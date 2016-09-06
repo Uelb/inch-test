@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160906080117) do
+ActiveRecord::Schema.define(version: 20160906093120) do
 
   create_table "buildings", force: :cascade do |t|
     t.string   "reference"
@@ -23,6 +23,17 @@ ActiveRecord::Schema.define(version: 20160906080117) do
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
   end
+
+  create_table "past_attributes", force: :cascade do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "value",      null: false
+    t.string   "key",        null: false
+    t.string   "tuple_type", null: false
+    t.integer  "tuple_id",   null: false
+  end
+
+  add_index "past_attributes", ["value", "key", "tuple_type", "tuple_id"], name: "past_attributes_main_index", unique: true
 
   create_table "people", force: :cascade do |t|
     t.string   "reference"
